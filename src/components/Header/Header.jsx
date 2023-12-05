@@ -3,13 +3,16 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import authService from "../../appwrite/auth"
 import { logout } from "../../store/authSlice"
+import { startLoader,stopLoader } from "../../store/loader"
 import {Logo , Button, ImageIcon} from '../index'
 
 const Header = () => {
   const dispatch = useDispatch()
   const logoutHandler = () => {
+    dispatch(startLoader())
     authService.logout().then(()=>{
       dispatch(logout())
+      dispatch(stopLoader())
     })
   }
   return (

@@ -14,10 +14,10 @@ export class Service{
             this.bucket = new Storage(this.client)
     }
 
-    async addLinks({platform,link,profileImage,firstName,lastName,email,status,userId}){
+    async addLinks({Platform,LinksUrl,status,userID}){
         try{
             await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,ID.unique(),
-                {platform,link,profileImage,firstName,lastName,email,status,userId}
+                {Platform,LinksUrl,status,userID}
             )
           
         }catch(error){
@@ -36,10 +36,10 @@ export class Service{
             throw error;
         }
     }
-    async updateLinks({platform,link}){
+    async updateLinks({Platform,LinksUrl,documentId}){
         try{
-            await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,ID.unique(),
-                {platform,link}
+            await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,documentId,
+                {Platform,LinksUrl}
             )
           
         }catch(error){
@@ -70,11 +70,15 @@ export class Service{
             return false
         }
     }
-    async getLink(){
+    async getLink(id){
         try{
-            await this.databases.listDocuments(conf.appwriteDatabaseId,conf.appwriteCollectionId,ID.unique(),
-            Query.equal('platform', 'link')
+           const alllinks = await this.databases.listDocuments(conf.appwriteDatabaseId,conf.appwriteCollectionId,
+                [
+                    Query.equal('userID',[id] )
+                ]
             )
+
+            return alllinks
           
         }catch(error){
             console.log("Error creating account", error)

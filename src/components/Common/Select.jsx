@@ -3,7 +3,7 @@
 import React from 'react'
 import { useId } from 'react'
 
-const Input = React.forwardRef(function Input({
+const Select = React.forwardRef(function Select({
     options,
     label,
     type="text",
@@ -11,6 +11,7 @@ const Input = React.forwardRef(function Input({
     ...props
 },ref){
     const id=useId()
+
     return (
         <div className='w-full'>
             {label && <label 
@@ -26,14 +27,16 @@ const Input = React.forwardRef(function Input({
             {...props}
             id={id}
             >
-                {options?.map((item)=> {
-                    <options key={item} value={item}>
+                {options.map((item)=> (
+                    <option key={item} value={item}>
                         {item}
-                    </options>
-                } )}
+                    </option>
+                ))}
             </select>
+
+            
         </div>
     )
 })
 
-export default Input
+export default Select

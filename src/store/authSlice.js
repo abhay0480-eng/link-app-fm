@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 
 
 const items = JSON.parse(localStorage.getItem('cookieFallback'));
-console.log(items);
-
+const userDatalocal = JSON.parse(localStorage.getItem('userData'));
 const initialState ={
-    status:items.a_session_65678d16e27081909244?true:false,
-    userData: null
+    status:items?true:false,
+    userData:userDatalocal?userDatalocal: null
 }
+
 
 
 const authSlice = createSlice({
@@ -17,11 +19,15 @@ const authSlice = createSlice({
             login: (state,action) =>{
                 state.status = true
                 state.userData = action.payload
+                localStorage.setItem('userData', JSON.stringify(action.payload));
             },
 
             logout:(state) => {
+                console.log("P");
                 state.status = false
                 state.userData = null
+                localStorage.removeItem('userData');
+                localStorage.removeItem('cookieFallback');
             }
         }
 })
@@ -29,3 +35,6 @@ const authSlice = createSlice({
 export const {login,logout} = authSlice.actions
 
 export default authSlice.reducer;
+
+
+
