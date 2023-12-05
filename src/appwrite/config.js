@@ -58,9 +58,9 @@ export class Service{
             throw error;
         }
     }
-    async deleteLinks({userId}){
+    async deleteLinks({documentId}){
         try{
-            await this.databases.deleteDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,userId
+            await this.databases.deleteDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,documentId
             )
 
             return true

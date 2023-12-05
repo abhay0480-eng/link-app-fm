@@ -1,9 +1,51 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button } from '..'
+import service from '../../appwrite/config';
+import { useSelector } from 'react-redux';
 
-const Sidebar = () => {
+const Sidebar = ({getAllLinks}) => {
+
   return (
-    <div>Sidebar</div>
+    <div className="flex flex-col  justify-center items-center bg-white">
+                <div className="relative">
+                    <img
+                        src="/images/illustration-phone-mockup.svg"
+                        alt=""
+                        className=""
+                    />
+                     <div className=" absolute  top-[11%] mx-auto rounded-full bg-white w-24 h-24  left-1/2 transform -translate-x-1/2 ">
+                        <img src={`/images/profile.jpeg`} alt="profile" className="object-cover  w-full h-full rounded-full" />
+                      </div>
+                    <div className="absolute  w-[235px] bg-white text-center top-[28%]   left-1/2 transform -translate-x-1/2">
+                     
+                        <p className="text-[18px] font-semibold text-[#333]">{`Abhay`} {`Kumar`}</p>
+                        <p className="text-[14px] font-normal text-[#737373]">{`@abhay`}</p>
+                    </div>
+                    <div className="absolute w-[235px] top-[44%] left-1/2 transform -translate-x-1/2  ">
+                        {
+                        getAllLinks?.map((item, index) =>{
+                           return  <Button key={index} className={`mb-2 px-3 
+                           ${item?.Platform === "GitHub" && "!bg-[#1A1A1A]"} 
+                           ${item?.Platform==="Frontend Mentor" && "!bg-[#FFF] !text-black"} 
+                           ${item?.Platform==="Twitter" && "!bg-[#43B7E9]"} 
+                           ${item?.Platform==="LinkedIn" && "!bg-[#2D68FF]"} 
+                           ${item?.Platform==="YouTube" && "!bg-[#EE3939]"} 
+                           ${item?.Platform==="Facebook" && "!bg-[#2442AC]"}  
+                           ${item?.Platform==="Twitch" && "!bg-[#EE3FC8]"}  
+                           ${item?.Platform==="Dev.to" && "!bg-[#333]"}  
+                           ${item?.Platform==="Codewars" && "!bg-[#8A1A50]"}  
+                           ${item?.Platform==="freeCodeCamp" && "!bg-[#302267]"}  
+                           ${item?.Platform==="GitLab" && "!bg-[#EB4925]"}  
+                           ${item?.Platform==="Codepen" && "!bg-[#0333]"}  
+                           ${item?.Platform==="Hashnode" && "!bg-[#0330D1]"}  
+                           ${item?.Platform==="Stack Overflow" && "!bg-[#EC7100]"}  
+                           flex items-center `}><img src={`/images/${item?.Platform}.svg `} alt="" style={{stroke: '#fff',filter: 'brightness(0) invert(1)'}} className="w-5 h-5 mx-3 "/>{item?.Platform}<img src={`/images/icon-arrow-right.svg `} alt="" style={{stroke: '#fff',filter: 'brightness(0) invert(1)'}} className="w-5 h-5 ml-auto"/></Button>
+                        })}
+                    </div>
+              </div>
+          </div>
   )
 }
 

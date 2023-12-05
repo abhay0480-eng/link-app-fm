@@ -12,10 +12,11 @@ import AddLinks from './pages/AddLinks.jsx'
 import AddProfileDetails from './pages/AddProfileDetails.jsx'
 import Preview from './pages/Preview.jsx'
 import {AuthLayout} from './components'
+import Layout from './Layout.jsx'
 
 const router = createBrowserRouter(createRoutesFromElements(
-   <Route>
-    <Route path="/" element={<AuthLayout authentication={false} ><Login /></AuthLayout>}/>
+    <Route path='/' element={<Layout />}>
+    <Route path='' element={<AuthLayout authentication={false} ><Login /></AuthLayout>}/>
     <Route path='/signup' element={<AuthLayout authentication={false} ><SignUp /></AuthLayout>}/>
     <Route path='/add-profile-details' element={<AuthLayout authentication={true} ><AddProfileDetails /></AuthLayout>}/>
     <Route path='/add-links' element={<AuthLayout authentication={true} ><AddLinks/></AuthLayout>}/>
