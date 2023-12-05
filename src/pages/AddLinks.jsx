@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import service from "../appwrite/config";
 import authService from "../appwrite/auth";
 import { login, logout } from "../store/authSlice";
-import Platform from "../components/dashboard/platform";
+import Platform from "../components/dashboard/Platform";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 

@@ -2,16 +2,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import {  useSelector } from 'react-redux'
 import service from '../../appwrite/config'
 import { Button, Input, Select } from '../index'
 
 const Platform = ({id,item}) => {
-    console.log("item",item);
-    const navigate = useNavigate()
-    const [loading, setLoading] = useState(true)
-    const dispatch = useDispatch()
   
     const {
         register,
@@ -40,7 +35,7 @@ const Platform = ({id,item}) => {
   
   
       const addlinks = async(data ) => {
-        const dbPost = await service.updateLinks({ ...data,documentId:id });
+        await service.updateLinks({ ...data,documentId:id });
       }
   return (
     <form onSubmit={handleSubmit(addlinks)}>
