@@ -47,10 +47,10 @@ export class Service{
             throw error;
         }
     }
-    async updateProfileInfo({profileImage,firstName,lastName,email,status,userId}){
+    async updateProfileInfo({profileImage,firstName,lastName,email,status},userId){
         try{
-            await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,ID.unique(),
-                {profileImage,firstName,lastName,email,status,userId}
+            await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,userId,
+                {profileImage,firstName,lastName,email,status}
             )
           
         }catch(error){

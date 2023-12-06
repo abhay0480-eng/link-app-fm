@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const getProfileDetail = JSON.parse(localStorage.getItem('getProfileDetails'));
 
 const initialState ={
-    profileDetails:getProfileDetail?getProfileDetail:{},
+    profileDetails:{},
 }
 
 const profileSlice = createSlice({

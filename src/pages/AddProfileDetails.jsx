@@ -15,15 +15,10 @@ const AddProfileDetails = () => {
   const userData = useSelector((state) => state.auth.userData?.$id);
   const profileDetails = useSelector((state) => state.profile.profileDetails);
   const id = userData?.toString();
-  const getAllLinks = useSelector((state) => state.link.getAllLinks);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileData, setFileData] = useState();
-
-
-
-console.log(getAllLinks);
   const {
     register,
     handleSubmit,
@@ -38,7 +33,10 @@ console.log(getAllLinks);
       try {
         dispatch(startLoader())
         const setprofileDetails = await service.getProfileDetails(id);
-        dispatch(getProfileDetails(setprofileDetails.documents[0]))
+        if(setprofileDetails.documents.length>0){
+          dispatch(getProfileDetails(setprofileDetails.documents[0]))
+
+        }
 
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -54,7 +52,12 @@ console.log(getAllLinks);
     setError("")
     try {
       dispatch(startLoader())
-       await service.addProfileInfo({...data,userId:id} )
+      if(Object.values(profileDetails).length === 0){
+        await service.addProfileInfo({...data,userId:id} )
+      }else{
+        await service.updateProfileInfo({...data},profileDetails.$id)
+      }
+      
     } catch (error) {
         setError(error.message)
     }finally{
@@ -87,6 +90,8 @@ console.log(getAllLinks);
     }
   };
 
+  console.log("profileDetails",profileDetails);
+
   return (
     <>
      <Backdrop
@@ -97,7 +102,7 @@ console.log(getAllLinks);
       </Backdrop>
       <div className="grid grid-cols-12 gap-x-3 p-10 ">
         <div className="col-span-4">
-          <Sidebar getAllLinks={getAllLinks} profileDetails={profileDetails} fileData={fileData}/>
+          <Sidebar  fileData={fileData}/>
         </div>
         <div className="col-span-8 px-5">
           <h1 className="text-[#333] font-bold text-[32px]">Profile Details</h1>
@@ -181,13 +186,10 @@ console.log(getAllLinks);
                   />
                   </div>
                   <div className='flex justify-end mt-5'>
-                  <Button className="w-40">Save</Button>
+                  <Button className="!w-40">{Object.values(profileDetails).length === 0?"Save":"Update"}</Button>
                   </div>
-                  
                   </form>
                 </div>
-
-            
         </div>
       </div>
     </>

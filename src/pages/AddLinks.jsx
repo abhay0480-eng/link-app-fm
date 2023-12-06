@@ -18,7 +18,6 @@ const AddLinks = () => {
   const userData = useSelector((state) => state.auth.userData?.$id);
   const isLoading = useSelector((state) => state.loader.status);
   const getAllLinks = useSelector((state) => state.link.getAllLinks);
-  const profileDetails = useSelector((state) => state.profile.profileDetails);
 
   const id = userData?.toString();
   const [count, setCount] = useState(1);
@@ -83,7 +82,7 @@ const AddLinks = () => {
       {/* <Header /> */}
       <div className="grid grid-cols-12 gap-x-3">
         <div className="col-span-4">
-          <Sidebar getAllLinks={getAllLinks} profileDetails={profileDetails}/>
+          <Sidebar/>
         </div>
         <div className="col-span-8 px-5">
           <h1 className="text-[#333] font-bold text-[32px]">Customize your links</h1>

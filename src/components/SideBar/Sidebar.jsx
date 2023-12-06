@@ -6,25 +6,9 @@ import service from '../../appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLoader, stopLoader } from '../../store/loader';
 
-const Sidebar = ({getAllLinks,profileDetails,fileData}) => {
-  // const dispatch = useDispatch()
-  // const [fileUrl,SetfileUrl] = useState()
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       dispatch(startLoader())
-        
-  //     const fileD =  await service.getImageFile(fileData)
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }finally{
-  //       dispatch(stopLoader())
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
+const Sidebar = () => {
+  const profileDetails = useSelector((state) => state.profile.profileDetails);
+  const getAllLinks = useSelector((state) => state.link.getAllLinks);
 
   return (
     <div className="flex flex-col  justify-center items-center bg-white">
