@@ -61,7 +61,7 @@ const Header = () => {
               >
                 <ImageIcon
                   className={`!mr-3 ${
-                    flag==="Profile" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
+                    flag!=="links" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
                   } `}
                   img="icon-profile-details-header"
                 ></ImageIcon>

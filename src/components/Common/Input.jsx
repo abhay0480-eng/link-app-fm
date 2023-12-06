@@ -10,19 +10,21 @@ const Input = React.forwardRef(function Input({
     icon,
     error,
     errors,
+    classNamelabel,
+    classNameinput,
     ...props
 },ref){
     const id=useId()
     return (
-        <div className='w-full'>
+        <div className={`w-full ${classNameinput}`}>
             {label && <label 
-            className={`w-full block text-[12px] font-normal text-[#333] mb-2 ${error && "text-[#FF3939]"}`}
+            className={`w-full block text-[12px] font-normal text-[#333] mb-2 ${error && "text-[#FF3939]"} ${classNamelabel}`}
             htmlFor={id}
             >
                 {label}
             </label>}
             
-            <div className='relative'>
+            <div className={`relative w-full`}>
             <img src={`/images/${icon}.svg`} alt='' className='absolute top-1/2 left-3 transform -translate-y-1/2'/>
             <input
             type={type}

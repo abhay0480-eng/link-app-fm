@@ -3,9 +3,28 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '..'
 import service from '../../appwrite/config';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { startLoader, stopLoader } from '../../store/loader';
 
-const Sidebar = ({getAllLinks}) => {
+const Sidebar = ({getAllLinks,profileDetails,fileData}) => {
+  // const dispatch = useDispatch()
+  // const [fileUrl,SetfileUrl] = useState()
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       dispatch(startLoader())
+        
+  //     const fileD =  await service.getImageFile(fileData)
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }finally{
+  //       dispatch(stopLoader())
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="flex flex-col  justify-center items-center bg-white">
@@ -20,8 +39,8 @@ const Sidebar = ({getAllLinks}) => {
                       </div>
                     <div className="absolute  w-[235px] bg-white text-center top-[28%]   left-1/2 transform -translate-x-1/2">
                      
-                        <p className="text-[18px] font-semibold text-[#333]">{`Abhay`} {`Kumar`}</p>
-                        <p className="text-[14px] font-normal text-[#737373]">{`@abhay`}</p>
+                        <p className="text-[18px] font-semibold text-[#333]">{`${profileDetails?.firstName?profileDetails?.firstName:"Ben"}`} {`${profileDetails?.lastName?profileDetails?.lastName:"Wright"}`}</p>
+                        <p className="text-[14px] font-normal text-[#737373]">{`${profileDetails?.email?profileDetails?.email:"ben@example.com"}`}</p>
                     </div>
                     <div className="absolute w-[235px] top-[44%] left-1/2 transform -translate-x-1/2  ">
                         {

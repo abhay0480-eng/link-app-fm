@@ -86,10 +86,15 @@ export class Service{
         }
     }
 
-    async getProfileDetails(userId){
+    async getProfileDetails(id){
         try{
-            await this.databases.getDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,userId,
+            const profileDetails = await this.databases.listDocuments(conf.appwriteDatabaseId,conf.appwriteCollectionId2,
+                [
+                    Query.equal("userId", [id])
+                ]
             )
+
+            return profileDetails
           
         }catch(error){
             console.log("Error creating account", error)
@@ -99,8 +104,10 @@ export class Service{
 
     async uploadFile(file){
         try{
-            await this.bucket.createFile(conf.appwriteBucketId, ID.unique() , file 
+           const FileData =   await this.bucket.createFile(conf.appwriteBucketId, ID.unique() , file 
             )
+
+            return FileData
           
         }catch(error){
             console.log("Error creating account", error)
@@ -113,6 +120,17 @@ export class Service{
             await this.bucket.deleteFile(conf.appwriteBucketId, fileId 
             )
           return true
+        }catch(error){
+            console.log("Error creating account", error)
+            throw error;
+        }
+    }
+
+    async getImageFile(fileId){
+        try{
+           const fileurl= await this.bucket.getFile(conf.appwriteBucketId, fileId 
+            )
+          return fileurl
         }catch(error){
             console.log("Error creating account", error)
             throw error;

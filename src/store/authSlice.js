@@ -23,11 +23,12 @@ const authSlice = createSlice({
             },
 
             logout:(state) => {
-                console.log("P");
                 state.status = false
                 state.userData = null
                 localStorage.removeItem('userData');
                 localStorage.removeItem('cookieFallback');
+                localStorage.removeItem('getAllLinks');
+                localStorage.removeItem('getProfileDetails');
             }
         }
 })
