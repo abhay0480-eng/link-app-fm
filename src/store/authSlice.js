@@ -10,8 +10,6 @@ const initialState ={
     userData:userDatalocal?userDatalocal: null
 }
 
-
-
 const authSlice = createSlice({
         name: "auth",
         initialState,

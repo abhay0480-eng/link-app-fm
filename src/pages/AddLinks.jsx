@@ -87,18 +87,40 @@ const AddLinks = () => {
         <div className="col-span-8 px-5">
           <h1 className="text-[#333] font-bold text-[32px]">Customize your links</h1>
           <p className="text-[#737373] font-normal text-[16px] mt-5 mb-7">Add/edit/remove links below and then share all your profiles with the world!</p>
-          <Button onClick={() => addlinks()} className={`!bg-[#fff] border-[1px] border-[#633CFF] rounded-lg !text-[#633CFF] !text-[16px] !w-full flex justify-center items-center`}>+ Add new link</Button>
-          <div className="h-96 overflow-y-auto px-5 mt-5">
-          {getAllLinks?.map((item, index) => (
-            <div key={item.$id} className="mt-5">
-               <div className='flex justify-between items-center'>
-                <div className='text-[16px] font-bold text-[#737373]'>{`Link #${index+1}`}</div>
-                <div  onClick={()=>remove(item.$id)} className='text-[16px] font-normal text-[#737373] cursor-pointer'>Remove</div>
-              </div>
-              <Platform id={item.$id} item={item}  setCount={setCount} />
-            </div>
-          ))}
-          </div>
+          <Button onClick={() => getAllLinks.length < 5 && addlinks()} className={`!bg-[#fff] border-[1px] border-[#633CFF] rounded-lg !text-[#633CFF] !text-[16px] !w-full flex justify-center items-center`}>+ Add new link</Button>
+
+
+          {getAllLinks.length < 1 ? (
+                  <div className=" mx-auto bg-[#FAFAFA] w-full p-10 mt-5">
+                    <img
+                      src="/images/illustration-empty.svg"
+                      alt=""
+                      className="mx-auto"
+                    />
+                    <h2 className="text-[32px] font-bold text-[#333] text-center mt-6 mb-8">
+                      Let’s get you started
+                    </h2>
+                    <p className="text-[16px] font-normal text-[#737373] text-center w-1/2 mx-auto">
+                      Use the “Add new link” button to get started. Once you
+                      have more than one link, you can reorder and edit them.
+                      We’re here to help you share your profiles with everyone!
+                    </p>
+                  </div>
+                ) : (
+                  <div className="h-96 overflow-y-auto px-5 mt-5">
+                  {getAllLinks?.map((item, index) => (
+                    <div key={item.$id} className="mt-5">
+                       <div className='flex justify-between items-center'>
+                        <div className='text-[16px] font-bold text-[#737373]'>{`Link #${index+1}`}</div>
+                        <div  onClick={()=>remove(item.$id)} className='text-[16px] font-normal text-[#737373] cursor-pointer'>Remove</div>
+                      </div>
+                      <Platform id={item.$id} item={item}  setCount={setCount} />
+                    </div>
+                  ))}
+                  </div>
+                )}
+          
+          
         </div>
       </div>
     </>
