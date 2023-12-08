@@ -1,36 +1,45 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { Button } from '..'
 import service from '../../appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
-import { startLoader, stopLoader } from '../../store/loader';
+import { startLoader, stopLoader } from '../../store/loader'; 
 
 const Sidebar = () => {
+  const userData = useSelector((state) => state.auth.userData?.$id);
 
-  // useEffect(() => {
 
-  //   async function fetchData() {
-  //     try {
-  //       dispatch(startLoader())
-  //       const setprofileDetails = await service.getProfileDetails(id);
-  //       if(setprofileDetails.documents.length>0){
-  //         dispatch(getProfileDetails(setprofileDetails.documents[0]))
+  const id = userData?.toString();
+ 
+  const dispatch = useDispatch()
 
-  //       }
+  useEffect(() => {
 
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }finally{
-  //       dispatch(stopLoader())
-  //     }
-  //   }
+    async function fetchData() {
+      try {
+        dispatch(startLoader())
+        const setprofileDetails = await service.getProfileDetails(id);
+        if(setprofileDetails.documents.length>0){
+          dispatch(getProfileDetails(setprofileDetails.documents[0]))
 
-  //   fetchData();
-  // }, []);
+        }
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }finally{
+        dispatch(stopLoader())
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  
   const profileDetails = useSelector((state) => state.profile.profileDetails);
   const getAllLinks = useSelector((state) => state.link.getAllLinks);
   const pic = useSelector((state) => state.image.profileImage);
+  
 const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
 
 
