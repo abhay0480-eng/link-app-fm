@@ -5,6 +5,7 @@ import { Button } from '..'
 import service from '../../appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLoader, stopLoader } from '../../store/loader'; 
+import {getProfileDetails} from '../../store/profileSlice'
 
 const Sidebar = () => {
   const userData = useSelector((state) => state.auth.userData?.$id);
@@ -22,7 +23,11 @@ const Sidebar = () => {
         const setprofileDetails = await service.getProfileDetails(id);
         if(setprofileDetails.documents.length>0){
           dispatch(getProfileDetails(setprofileDetails.documents[0]))
-
+          const pic = await service.getImageFile(setprofileDetails?.documents[0]?.profileImage)
+          if(pic){
+            dispatch(getImage(pic?.href))
+          }
+            
         }
 
       } catch (error) {
@@ -52,7 +57,7 @@ const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
                         className=""
                     />
                      <div className=" absolute  top-[10%] mx-auto rounded-full bg-white w-24 h-24  left-1/2 transform -translate-x-1/2 ">
-                        <img src={`${piclocal?piclocal:pic}`} alt="profile" className="object-cover  w-full h-full rounded-full" />
+                        <img src={`${pic?pic:piclocal}`} alt="profile" className="object-cover  w-full h-full rounded-full" />
                       </div>
                     <div className="absolute  w-[235px] bg-white text-center top-[28%]   left-1/2 transform -translate-x-1/2">
                      

@@ -40,7 +40,11 @@ const AddProfileDetails = () => {
         const setprofileDetails = await service.getProfileDetails(id);
         if(setprofileDetails.documents.length>0){
           dispatch(getProfileDetails(setprofileDetails.documents[0]))
-
+          const pic = await service.getImageFile(setprofileDetails?.documents[0]?.profileImage)
+          if(pic){
+            dispatch(getImage(pic?.href))
+          }
+            
         }
 
       } catch (error) {

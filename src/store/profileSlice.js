@@ -1,8 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const getProfileDetail = JSON.parse(localStorage.getItem('getProfileDetails'));
+
+
 
 const initialState ={
     profileDetails:{},

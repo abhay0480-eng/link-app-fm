@@ -70,8 +70,10 @@ const Platform = ({id,item,setCount}) => {
     {...register("LinksUrl")}
     />
     </div>
-   
-    <Button className="w-40 ">Save</Button>
+
+   <div className='flex justify-end'>
+    <Button className="!w-40 ">Save</Button>
+   </div>
   </form>
   )
 }
