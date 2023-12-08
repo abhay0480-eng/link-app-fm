@@ -54,14 +54,14 @@ const Header = () => {
               <Button
                 onClick={() =>setStatus("Profile")}
                 className={`${
-                  flag!=="links"
+                  flag==="Profile"
                     ? "!bg-[#EFEBFF] !text-[#633CFF]"
                     : "!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] "
                 } !w-[200px] flex justify-center items-center !text-[16px]`}
               >
                 <ImageIcon
                   className={`!mr-3 ${
-                    flag!=="links" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
+                    flag==="Profile" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
                   } `}
                   img="icon-profile-details-header"
                 ></ImageIcon>

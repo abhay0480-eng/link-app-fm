@@ -128,7 +128,7 @@ export class Service{
 
     async getImageFile(fileId){
         try{
-           const fileurl= await this.bucket.getFile(conf.appwriteBucketId, fileId 
+           const fileurl= await this.bucket.getFilePreview(conf.appwriteBucketId, fileId 
             )
           return fileurl
         }catch(error){

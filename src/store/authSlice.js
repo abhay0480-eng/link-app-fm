@@ -27,6 +27,8 @@ const authSlice = createSlice({
                 localStorage.removeItem('cookieFallback');
                 localStorage.removeItem('getAllLinks');
                 localStorage.removeItem('getProfileDetails');
+                localStorage.removeItem('profileImageLocal');
+                
             }
         }
 })

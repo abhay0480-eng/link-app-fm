@@ -7,8 +7,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLoader, stopLoader } from '../../store/loader';
 
 const Sidebar = () => {
+
+  // useEffect(() => {
+
+  //   async function fetchData() {
+  //     try {
+  //       dispatch(startLoader())
+  //       const setprofileDetails = await service.getProfileDetails(id);
+  //       if(setprofileDetails.documents.length>0){
+  //         dispatch(getProfileDetails(setprofileDetails.documents[0]))
+
+  //       }
+
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }finally{
+  //       dispatch(stopLoader())
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, []);
   const profileDetails = useSelector((state) => state.profile.profileDetails);
   const getAllLinks = useSelector((state) => state.link.getAllLinks);
+  const pic = useSelector((state) => state.image.profileImage);
+const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
+
 
   return (
     <div className="flex flex-col  justify-center items-center bg-white">
@@ -19,7 +43,7 @@ const Sidebar = () => {
                         className=""
                     />
                      <div className=" absolute  top-[11%] mx-auto rounded-full bg-white w-24 h-24  left-1/2 transform -translate-x-1/2 ">
-                        <img src={`/images/profile.jpeg`} alt="profile" className="object-cover  w-full h-full rounded-full" />
+                        <img src={`${piclocal?piclocal:pic}`} alt="profile" className="object-cover  w-full h-full rounded-full" />
                       </div>
                     <div className="absolute  w-[235px] bg-white text-center top-[28%]   left-1/2 transform -translate-x-1/2">
                      

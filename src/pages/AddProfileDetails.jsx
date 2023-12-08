@@ -9,16 +9,20 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { startLoader, stopLoader } from '../store/loader';
 import { getProfileDetails } from '../store/profileSlice';
+import { getImage } from '../store/imageSlice.js';
 
 const AddProfileDetails = () => {
   const isLoading = useSelector((state) => state.loader.status);
+  const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
   const userData = useSelector((state) => state.auth.userData?.$id);
   const profileDetails = useSelector((state) => state.profile.profileDetails);
+  const pic = useSelector((state) => state.image.profileImage);
   const id = userData?.toString();
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null);
-  const [fileData, setFileData] = useState();
+  // const [pic, setPic] = useState();
+  // const [fileData, setFileData] = useState();
   const {
     register,
     handleSubmit,
@@ -54,6 +58,7 @@ const AddProfileDetails = () => {
       dispatch(startLoader())
       if(Object.values(profileDetails).length === 0){
         await service.addProfileInfo({...data,userId:id} )
+       
       }else{
         await service.updateProfileInfo({...data},profileDetails.$id)
       }
@@ -65,22 +70,25 @@ const AddProfileDetails = () => {
     }
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function fetchData() {
-  //     try {
-  //       dispatch(startLoader())
-  //     const fileD =  await service.uploadFile(selectedFile)
-  //       setFileData(fileD.$id)
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }finally{
-  //       dispatch(stopLoader())
-  //     }
-  //   }
+    async function fetchData() {
+      try {
+        dispatch(startLoader())
+      const fileD =  await service.uploadFile(selectedFile)
+        const pic = await service.getImageFile(fileD.$id)
+        if(pic.href){
+          dispatch(getImage(pic?.href))
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }finally{
+        dispatch(stopLoader())
+      }
+    }
 
-  //   fetchData();
-  // }, [selectedFile]);
+    fetchData();
+  }, [selectedFile]);
 
 
   const handleFileChange = (e) => {
@@ -90,7 +98,6 @@ const AddProfileDetails = () => {
     }
   };
 
-  console.log("profileDetails",profileDetails);
 
   return (
     <>
@@ -102,7 +109,7 @@ const AddProfileDetails = () => {
       </Backdrop>
       <div className="grid grid-cols-12 gap-x-3 p-10 ">
         <div className="col-span-4">
-          <Sidebar  fileData={fileData}/>
+          <Sidebar  />
         </div>
         <div className="col-span-8 px-5">
           <h1 className="text-[#333] font-bold text-[32px]">Profile Details</h1>
@@ -115,17 +122,36 @@ const AddProfileDetails = () => {
                   Profile picture
                 </p>
               </div>
-              <div className="bg-[#EFEBFF] flex flex-col h-52 justify-center items-center">
-              <Input
+              <div className="bg-[#EFEBFF] flex flex-col h-52 justify-center items-center relative ">
+                  <div className="z-[100]">
+                    <input
                     type="file"
-                    classNamelabel="inline-block w-2/5 text-[16px] font-normal text-[#737373]"
-                    className="w-full "
+                    id="fileInput"
                     onChange={handleFileChange}
-                    classNameinput="flex justify-between items-center"
-                    // {...register("profileImage", {
-                    //   required: false
-                    // })}
-                  />
+                    style={{ display: "none" }}
+                    />
+                    <label
+                      htmlFor="fileInput"
+                      className="w-1/2  text-white  !rounded-xl cursor-pointer z-[100]"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        // fill="none"
+                        className="mx-auto"
+                        viewBox="0 0 40 40"
+                        style={{ fill:piclocal ? "#FFFFFF" : "#633CFF" }}
+                        >
+                        {/* ... your path here ... */}
+                        {/* <img src="/images/icon-upload-image.svg" alt=""  className="!fill-white"/> */}
+                        <path d="M33.75 6.25H6.25a2.5 2.5 0 0 0-2.5 2.5v22.5a2.5 2.5 0 0 0 2.5 2.5h27.5a2.5 2.5 0 0 0 2.5-2.5V8.75a2.5 2.5 0 0 0-2.5-2.5Zm0 2.5v16.055l-4.073-4.072a2.5 2.5 0 0 0-3.536 0l-3.125 3.125-6.875-6.875a2.5 2.5 0 0 0-3.535 0L6.25 23.339V8.75h27.5ZM6.25 26.875l8.125-8.125 12.5 12.5H6.25v-4.375Zm27.5 4.375h-3.34l-5.624-5.625L27.91 22.5l5.839 5.84v2.91ZM22.5 15.625a1.875 1.875 0 1 1 3.75 0 1.875 1.875 0 0 1-3.75 0Z" />
+                      </svg>
+                      <p className={`${piclocal ? "text-[#FFFFFF]" : "text-[#633CFF]"}`}>Change Image</p>
+                    </label>
+                </div>
+                {piclocal&&<div  className="absolute top-0 w-full h-full rounded-2xl bg-black opacity-60 z-20 "></div>}
+                  {piclocal&&<img src={piclocal?piclocal:pic} alt="" className="absolute top-0 w-full h-full rounded-2xl object-cover " />}
               </div>
               <div className="flex flex-col justify-center items-end">
                 <p className="text-[16px] font-normal text-right text-[#737373]">
