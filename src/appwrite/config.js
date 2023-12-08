@@ -27,9 +27,11 @@ export class Service{
     }
     async addProfileInfo({profileImage,firstName,lastName,email,status,userId}){
         try{
-            await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,ID.unique(),
+           const profileRes =  await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,ID.unique(),
                 {profileImage,firstName,lastName,email,status,userId}
+
             )
+            return profileRes
           
         }catch(error){
             console.log("Error creating account", error)
@@ -49,9 +51,10 @@ export class Service{
     }
     async updateProfileInfo({profileImage,firstName,lastName,email,status},userId){
         try{
-            await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,userId,
+          const profileRes =   await this.databases.updateDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId2,userId,
                 {profileImage,firstName,lastName,email,status}
             )
+            return profileRes
           
         }catch(error){
             console.log("Error creating account", error)

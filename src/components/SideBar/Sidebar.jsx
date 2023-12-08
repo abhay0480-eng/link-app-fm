@@ -51,7 +51,7 @@ const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
                         alt=""
                         className=""
                     />
-                     <div className=" absolute  top-[11%] mx-auto rounded-full bg-white w-24 h-24  left-1/2 transform -translate-x-1/2 ">
+                     <div className=" absolute  top-[10%] mx-auto rounded-full bg-white w-24 h-24  left-1/2 transform -translate-x-1/2 ">
                         <img src={`${piclocal?piclocal:pic}`} alt="profile" className="object-cover  w-full h-full rounded-full" />
                       </div>
                     <div className="absolute  w-[235px] bg-white text-center top-[28%]   left-1/2 transform -translate-x-1/2">

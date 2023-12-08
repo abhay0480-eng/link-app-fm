@@ -21,8 +21,9 @@ const AddProfileDetails = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null);
-  // const [pic, setPic] = useState();
-  // const [fileData, setFileData] = useState();
+
+  const [imageKey, setImageKey] = useState();
+  const [profilePreview, setProfilePreview] = useState();
   const {
     register,
     handleSubmit,
@@ -57,10 +58,25 @@ const AddProfileDetails = () => {
     try {
       dispatch(startLoader())
       if(Object.values(profileDetails).length === 0){
-        await service.addProfileInfo({...data,userId:id} )
-       
+      const profileRes =   await service.addProfileInfo({...data,userId:id,profileImage:imageKey} )
+      if(profileRes.profileImage){
+        const pic = await service.getImageFile(profileRes.profileImage)
+        if(pic){
+          dispatch(getImage(pic?.href))
+        }
+          
+      }
       }else{
-        await service.updateProfileInfo({...data},profileDetails.$id)
+        const profileRes = await service.updateProfileInfo({...data,profileImage:imageKey},profileDetails.$id,)
+        if(profileRes.profileImage){
+          const pic = await service.getImageFile(profileRes.profileImage)
+          if(pic){
+            dispatch(getImage(pic?.href))
+          }
+            
+        }
+
+
       }
       
     } catch (error) {
@@ -76,9 +92,10 @@ const AddProfileDetails = () => {
       try {
         dispatch(startLoader())
       const fileD =  await service.uploadFile(selectedFile)
+        setImageKey(fileD.$id)
         const pic = await service.getImageFile(fileD.$id)
         if(pic.href){
-          dispatch(getImage(pic?.href))
+          setProfilePreview(pic.href)
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -151,7 +168,7 @@ const AddProfileDetails = () => {
                     </label>
                 </div>
                 {piclocal&&<div  className="absolute top-0 w-full h-full rounded-2xl bg-black opacity-60 z-20 "></div>}
-                  {piclocal&&<img src={piclocal?piclocal:pic} alt="" className="absolute top-0 w-full h-full rounded-2xl object-cover " />}
+                  {profilePreview&&<img src={profilePreview} alt="" className="absolute top-0 w-full h-full rounded-2xl object-cover " />}
               </div>
               <div className="flex flex-col justify-center items-end">
                 <p className="text-[16px] font-normal text-right text-[#737373]">

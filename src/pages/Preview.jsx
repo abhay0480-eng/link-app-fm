@@ -8,6 +8,9 @@ const Preview = () => {
   const navigate = useNavigate()
   const profileDetails = useSelector((state) => state.profile.profileDetails);
   const getAllLinks = useSelector((state) => state.link.getAllLinks);
+  const pic = useSelector((state) => state.image.profileImage);
+const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
+
 
   return (
     <div className=' relative h-screen bg-[#FAFAFA]'>
@@ -18,10 +21,10 @@ const Preview = () => {
         </div>
 
     </div>
-    <div className='bg-white pt-5 px-14 w-96 shadow-2xl rounded-3xl  absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+    <div className='bg-white pt-5 px-14 w-96 shadow-2xl rounded-3xl  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
         <div className='mb-14 text-center'>
         <div className=" mx-auto rounded-full bg-white w-24 h-24   ">
-            <img src={`/images/profile.jpeg`} alt="profile" className="object-cover  w-full h-full rounded-full" />
+            <img src={piclocal?piclocal:pic} alt="profile" className="object-cover  w-full h-full rounded-full" />
         </div>
         <div className="  w-[235px] bg-white text-center mx-auto">
           <p className="text-[18px] font-semibold text-[#333]">{`${profileDetails?.firstName?profileDetails?.firstName:"Ben"}`} {`${profileDetails?.lastName?profileDetails?.lastName:"Wright"}`}</p>
