@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 
 export default function AuthLayout ({children,authentication = true}) {
