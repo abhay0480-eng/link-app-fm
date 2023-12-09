@@ -80,27 +80,32 @@ const AddLinks = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       {/* <Header /> */}
-      <div className="grid grid-cols-12 gap-x-3">
+      <div className="lg:grid lg:grid-cols-12 gap-x-3">
         <div className="col-span-4">
           <Sidebar/>
         </div>
-        <div className="col-span-8 px-5">
-          <h1 className="text-[#333] font-bold text-[32px]">Customize your links</h1>
+        <div className="lg:col-span-8 px-5">
+          <h1 className="text-[#333] font-bold lg:text-[32px] text-[24px]">Customize your links</h1>
           <p className="text-[#737373] font-normal text-[16px] mt-5 mb-7">Add/edit/remove links below and then share all your profiles with the world!</p>
           <Button onClick={() => getAllLinks.length < 5 && addlinks()} className={`!bg-[#fff] border-[1px] border-[#633CFF] rounded-lg !text-[#633CFF] !text-[16px] !w-full flex justify-center items-center`}>+ Add new link</Button>
 
 
           {getAllLinks.length < 1 ? (
-                  <div className=" mx-auto bg-[#FAFAFA] w-full p-10 mt-5">
+                  <div className=" mx-auto bg-[#FAFAFA] w-full lg:p-10 p-5 mt-5">
                     <img
                       src="/images/illustration-empty.svg"
                       alt=""
-                      className="mx-auto"
+                      className="mx-auto hidden"
                     />
-                    <h2 className="text-[32px] font-bold text-[#333] text-center mt-6 mb-8">
+                    <img
+                      src="/images/illustration-empty.svg"
+                      alt=""
+                      className="mx-auto "
+                    />
+                    <h2 className="lg:text-[32px] text-[24px]  font-bold text-[#333] text-center mt-6 mb-8">
                       Let’s get you started
                     </h2>
-                    <p className="text-[16px] font-normal text-[#737373] text-center w-1/2 mx-auto">
+                    <p className="text-[16px] font-normal text-[#737373] text-center lg:w-1/2 mx-auto">
                       Use the “Add new link” button to get started. Once you
                       have more than one link, you can reorder and edit them.
                       We’re here to help you share your profiles with everyone!

@@ -49,7 +49,7 @@ const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
 
 
   return (
-    <div className="flex flex-col  justify-center items-center bg-white">
+    <div className="lg:flex flex-col  justify-center items-center bg-white hidden ">
                 <div className="relative">
                     <img
                         src="/images/illustration-phone-mockup.svg"

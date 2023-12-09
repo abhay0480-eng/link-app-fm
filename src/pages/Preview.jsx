@@ -14,20 +14,20 @@ const piclocal = JSON.parse(localStorage.getItem('profileImageLocal'));
 
   return (
     <div className=' relative h-screen bg-[#FAFAFA]'>
-    <div className='bg-[#633CFF]  h-96 rounded-br-3xl rounded-bl-3xl pt-6 px-6'>
+    <div className='lg:bg-[#633CFF]  lg:h-96 rounded-br-3xl rounded-bl-3xl lg:pt-6 lg:px-6'>
         <div className='flex justify-between  py-4 px-6  bg-white rounded-xl' >
             <button onClick={()=>navigate("/add-links")} className='py-3 px-7 border-[1px] border-[#633CFF] text-[#633CFF] rounded-lg' >Back to Editor</button>
             <button className='py-3 px-7 border-[1px] bg-[#633CFF] border-[#633CFF] text-[#FFFFFF] rounded-lg' >Share Link</button>
         </div>
 
     </div>
-    <div className='bg-white pt-5 px-14 w-96 shadow-2xl rounded-3xl  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+    <div className='bg-white pt-5 lg:px-14 px-5 w-96 lg:shadow-2xl rounded-3xl  absolute top-20 lg:top-1/2 left-1/2 transform -translate-x-1/2 lg:-translate-y-1/2'>
         <div className='mb-14 text-center'>
-        <div className=" mx-auto rounded-full bg-white w-24 h-24   ">
+        <div className=" mx-auto rounded-full bg-white w-24 h-24 mb-10 lg:mb-0   ">
             <img src={piclocal?piclocal:pic} alt="profile" className="object-cover  w-full h-full rounded-full" />
         </div>
         <div className="  w-[235px] bg-white text-center mx-auto">
-          <p className="text-[18px] font-semibold text-[#333]">{`${profileDetails?.firstName?profileDetails?.firstName:"Ben"}`} {`${profileDetails?.lastName?profileDetails?.lastName:"Wright"}`}</p>
+          <p className="lg:text-[18px] text-[32px]  font-semibold text-[#333]">{`${profileDetails?.firstName?profileDetails?.firstName:"Ben"}`} {`${profileDetails?.lastName?profileDetails?.lastName:"Wright"}`}</p>
           <p className="text-[14px] font-normal text-[#737373]">{`${profileDetails?.email?profileDetails?.email:"ben@example.com"}`}</p>
         </div>
         <div className=" w-full mx-auto mt-7 ">

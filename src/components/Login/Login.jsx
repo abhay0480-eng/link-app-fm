@@ -91,8 +91,8 @@ const Login = () => {
       <div className=''>
         <img src='/images/logo-devlinks-large.svg' alt='' className='mx-auto'/>
       </div>
-      <div className='bg-[#FFFFFF] w-1/3 mx-auto p-12 mt-8'>
-        <h1 className='text-[32px] font-bold text-[#333]'>Login</h1>
+      <div className='bg-[#FFFFFF]  lg:w-1/3 mx-auto p-5 lg:p-12 mt-8'>
+        <h1 className='lg:text-[32px] text-[24px] font-bold text-[#333]'>Login</h1>
         <p className='text-[16px] font-normal mt-3 mb-14 text-[#737373]'>Add your details below to get back into the app</p>
         <form onSubmit={handleSubmit(login)}>
           <div>

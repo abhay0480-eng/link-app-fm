@@ -28,8 +28,8 @@ const Header = () => {
 
 
   return (
-    <div className="bg-[#FAFAFA] p-6 ">
-          <div className="flex justify-between items-center  p-4 bg-white">
+    <div className="bg-[#FAFAFA] lg:p-6  p-2 mb-10 lg:mb-0">
+          <div className="flex justify-between items-center  lg:p-4 bg-white">
             <div className="">
               <Link to="/">
                 <Logo/>
@@ -42,13 +42,13 @@ const Header = () => {
                   flag==="links"
                     ? "!bg-[#EFEBFF] !text-[#633CFF] "
                     : "!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] "
-                } !w-[150px] flex justify-center items-center mr-5 !text-[16px]`}
+                } lg:!w-[150px] w-[50px] flex justify-center items-center lg:mr-5 !text-[16px]`}
               >
                 <ImageIcon
-                  className="!mr-3"
+                  className="lg:!mr-3"
                   img="icon-links-header"
                 ></ImageIcon>
-                Links
+                <span className="hidden lg:inline-block">Links</span>
               </Button>
 
               <Button
@@ -57,29 +57,43 @@ const Header = () => {
                   flag==="Profile"
                     ? "!bg-[#EFEBFF] !text-[#633CFF]"
                     : "!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] "
-                } !w-[200px] flex justify-center items-center !text-[16px]`}
+                } lg:!w-[200px] w-[50px] flex justify-center items-center !text-[16px] ml-3 lg:ml-auto`}
               >
                 <ImageIcon
-                  className={`!mr-3 ${
+                  className={`lg:!mr-3 ${
                     flag==="Profile" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
                   } `}
                   img="icon-profile-details-header"
                 ></ImageIcon>
-                Profile Details
+                
+                <span className="hidden lg:inline-block">Profile Details</span>
+
               </Button>
             </div>
             <div className="flex justify-around">
               <Button
                 onClick={() => setStatus("Preview")}
-                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] !w-[200px] flex justify-center items-center mx-3`}
+                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center mx-3`}
               >
-                Preview
+                <ImageIcon
+                  className={` lg:hidden ${
+                    flag==="Profile" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
+                  } `}
+                  img="icon-preview-header"
+                ></ImageIcon>
+                <span className="hidden lg:inline-block">Preview</span>
               </Button>
               <Button
                 onClick={() => logoutHandler()}
-                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] !w-[200px] flex justify-center items-center`}
+                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center`}
               >
-                Logout
+                 <ImageIcon
+                  className={` lg:hidden ${
+                    flag==="Profile" ? "" : " hover:!text-[#633CFF] !text-[#737373] "
+                  } `}
+                  img="logout_icon"
+                ></ImageIcon>
+                <span className="hidden lg:inline-block">Logout</span>
               </Button>
             </div>
           </div>

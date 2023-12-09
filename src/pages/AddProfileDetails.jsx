@@ -128,16 +128,16 @@ const AddProfileDetails = () => {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <div className="grid grid-cols-12 gap-x-3 p-10 ">
+      <div className="lg:grid grid-cols-12 gap-x-3 lg:p-10 ">
         <div className="col-span-4">
           <Sidebar  />
         </div>
         <div className="col-span-8 px-5">
-          <h1 className="text-[#333] font-bold text-[32px]">Profile Details</h1>
+          <h1 className="text-[#333] font-bold  text-[24px] lg:text-[32px]">Profile Details</h1>
           <p className="text-[#737373] font-normal text-[16px] mt-5 mb-7">Add your details to create a personal touch to your profile.</p>
 
 
-          <div className="grid grid-cols-3 bg-[#FAFAFA] p-5">
+          <div className="lg:grid grid-cols-3 bg-[#FAFAFA] p-5">
               <div className="flex flex-col justify-center">
                 <p className="text-[16px] font-normal text-[#737373]">
                   Profile picture
@@ -183,7 +183,7 @@ const AddProfileDetails = () => {
 
             <div className="bg-[#FAFAFA] p-5 mt-5">
             <form onSubmit={handleSubmit(addDetails)}>
-                  <div className="flex justify-between items-center">
+                  <div className="lg:flex justify-between items-center">
                   <Input
                     label="First name*"
                     placeholder = "e.g. John"
@@ -191,7 +191,7 @@ const AddProfileDetails = () => {
                     error={error}
                     classNamelabel="inline-block w-2/5 text-[16px] font-normal text-[#737373]"
                     className="w-full "
-                    classNameinput="flex justify-between items-center"
+                    classNameinput="lg:flex justify-between items-center"
                     errors={errors?.firstName?.message}
                     defaultValue={profileDetails?.firstName}
                     {...register("firstName", {
@@ -200,7 +200,7 @@ const AddProfileDetails = () => {
                   />
                   </div>
 
-                  <div className="flex justify-between items-center my-5">
+                  <div className="lg:flex justify-between items-center my-5">
                   <Input
                     label="Last name*"
                     placeholder = "e.g. Appleseed"
@@ -209,14 +209,14 @@ const AddProfileDetails = () => {
                     classNamelabel="inline-block w-2/5 text-[16px] font-normal text-[#737373]"
                     className="w-full "
                     defaultValue={profileDetails?.lastName}
-                    classNameinput="flex justify-between items-center"
+                    classNameinput="lg:flex justify-between items-center"
                     errors={errors?.lastName?.message}
                     {...register("lastName", {
                       required: true
                     })}
                   />
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="lg:flex justify-between items-center">
                   <Input
                     label="Email"
                     placeholder = "e.g. email@example.com"
@@ -225,7 +225,7 @@ const AddProfileDetails = () => {
                     classNamelabel="inline-block w-2/5 text-[16px] font-normal text-[#737373]"
                     className="w-full "
                     defaultValue={profileDetails?.email}
-                    classNameinput="flex justify-between items-center"
+                    classNameinput="lg:flex justify-between items-center"
                     errors={errors?.email?.message}
                     {...register("email", {
                       required: false

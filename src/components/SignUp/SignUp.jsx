@@ -75,8 +75,8 @@ const SignUp = () => {
       <div className=''>
         <img src='/images/logo-devlinks-large.svg' alt='' className='mx-auto'/>
       </div>
-      <div className='bg-[#FFFFFF] w-1/3 mx-auto p-12 mt-8'>
-        <h1 className='text-[32px] font-bold text-[#333]'>Create account</h1>
+      <div className='bg-[#FFFFFF] lg:w-1/3 mx-auto p-5 lg:p-12 mt-8'>
+        <h1 className='text-[24px] lg:text-[32px] font-bold text-[#333]'>Create account</h1>
         <p className='text-[16px] font-normal mt-3 mb-14 text-[#737373]'>Let’s get you started sharing your links!</p>
         <form onSubmit={handleSubmit(create)}>
           <div>
