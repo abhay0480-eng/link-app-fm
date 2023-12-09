@@ -42,7 +42,7 @@ const Header = () => {
                   flag==="links"
                     ? "!bg-[#EFEBFF] !text-[#633CFF] "
                     : "!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] "
-                } lg:!w-[150px] w-[50px] flex justify-center items-center lg:mr-5 !text-[16px]`}
+                } lg:!w-[150px] w-[50px] flex justify-center items-center lg:mr-5 !text-[16px] p-3 lg:p-auto`}
               >
                 <ImageIcon
                   className="lg:!mr-3"
@@ -57,7 +57,7 @@ const Header = () => {
                   flag==="Profile"
                     ? "!bg-[#EFEBFF] !text-[#633CFF]"
                     : "!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] "
-                } lg:!w-[200px] w-[50px] flex justify-center items-center !text-[16px] ml-3 lg:ml-auto`}
+                } lg:!w-[200px] w-[50px] flex justify-center items-center !text-[16px] ml-3 lg:ml-auto p-3 lg:p-auto`}
               >
                 <ImageIcon
                   className={`lg:!mr-3 ${
@@ -73,7 +73,7 @@ const Header = () => {
             <div className="flex justify-around">
               <Button
                 onClick={() => setStatus("Preview")}
-                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center mx-3`}
+                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center mx-3 p-3 lg:p-auto`}
               >
                 <ImageIcon
                   className={` lg:hidden ${
@@ -85,7 +85,7 @@ const Header = () => {
               </Button>
               <Button
                 onClick={() => logoutHandler()}
-                className={`!bg-[#fff] hover:!text-[#633CFF] !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center`}
+                className={`!bg-[#fff] hover:!text-[#633CFF] p-3 lg:p-auto !text-[#737373] !text-[16px] lg:!w-[200px] w-[50px] flex justify-center items-center`}
               >
                  <ImageIcon
                   className={` lg:hidden ${
