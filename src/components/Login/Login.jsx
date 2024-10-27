@@ -40,7 +40,12 @@ const Login = () => {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm()
+      } = useForm({
+        defaultValues: {
+          email: "test@mailinator.com", // Set default value for email
+          password: "Test@1234"
+        }
+      })
       const [error,setError] =useState("")
 
       const login = async(data ) => {
